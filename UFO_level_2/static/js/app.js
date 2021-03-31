@@ -55,3 +55,30 @@ function runEnterCity () {
         });
       });
 };
+
+var buttonState = d3.select("#filter-btn-state");
+
+buttonState.on("click", runEnterState);
+
+
+function runEnterState () {
+
+    d3.event.preventDefault();
+
+    var inputElementState = d3.select("#state");
+
+    var inputValueState = inputElementState.property("value");
+
+    var filteredDataState = tableData.filter(tableData => tableData.state === inputValueState);
+
+    tbody.html("");
+
+    filteredDataState.forEach((sightingsState) => {
+        var row = tbody.append("tr");
+        Object.entries(sightingsState).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+          
+        });
+      });
+};
