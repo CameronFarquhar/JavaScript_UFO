@@ -27,3 +27,31 @@ function runEnterDate () {
         });
       });
 };
+
+
+var buttonCity = d3.select("#filter-btn-city");
+
+buttonCity.on("click", runEnterCity);
+
+
+function runEnterCity () {
+
+    d3.event.preventDefault();
+
+    var inputElementCity = d3.select("#city");
+
+    var inputValueCity = inputElementCity.property("value");
+
+    var filteredDataCity = tableData.filter(tableData => tableData.city === inputValueCity);
+
+    tbody.html("");
+
+    filteredDataCity.forEach((sightingsCity) => {
+        var row = tbody.append("tr");
+        Object.entries(sightingsCity).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+          
+        });
+      });
+};
