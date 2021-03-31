@@ -82,3 +82,30 @@ function runEnterState () {
         });
       });
 };
+
+var buttonCountry = d3.select("#filter-btn-country");
+
+buttonCountry.on("click", runEnterCountry);
+
+
+function runEnterCountry () {
+
+    d3.event.preventDefault();
+
+    var inputElementCountry = d3.select("#country");
+
+    var inputValueCountry = inputElementCountry.property("value");
+
+    var filteredDataCountry = tableData.filter(tableData => tableData.country === inputValueCountry);
+
+    tbody.html("");
+
+    filteredDataCountry.forEach((sightingsCountry) => {
+        var row = tbody.append("tr");
+        Object.entries(sightingsCountry).forEach(([key, value]) => {
+          var cell = row.append("td");
+          cell.text(value);
+          
+        });
+      });
+};
