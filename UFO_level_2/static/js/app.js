@@ -15,11 +15,11 @@ function runEnterDate () {
 
     var inputValueDate = inputElementDate.property("value");
 
-    var filteredData = tableData.filter(tableData => tableData.datetime === inputValueDate);
+    var filteredDataDate = tableData.filter(tableData => tableData.datetime === inputValueDate);
 
     tbody.html("");
-
-    filteredData.forEach((sightings) => {
+    
+    filteredDataDate.forEach((sightings) => {
         var row = tbody.append("tr");
         Object.entries(sightings).forEach(([key, value]) => {
           var cell = row.append("td");
@@ -45,6 +45,19 @@ function runEnterCity () {
     var filteredDataCity = tableData.filter(tableData => tableData.city === inputValueCity);
 
     tbody.html("");
+    
+
+    // if (filteredDataCity.datetime === inputValueDate) {
+    //   filteredDataCity.forEach((sightingsCity) => {
+    //     var row = tbody.append("tr");
+    //     Object.entries(sightingsCity).forEach(([key, value]) => {
+    //       var cell = row.append("td");
+    //       cell.text(value);
+          
+    //     });
+    //   });
+    // }
+    // else {
 
     filteredDataCity.forEach((sightingsCity) => {
         var row = tbody.append("tr");
@@ -54,6 +67,7 @@ function runEnterCity () {
           
         });
       });
+    // }
 };
 
 var buttonState = d3.select("#filter-btn-state");
@@ -137,3 +151,5 @@ function runEnterShape () {
         });
       });
 };
+
+// try change instead of click button and it will allow to switch between parameters.
