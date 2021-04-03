@@ -1,6 +1,6 @@
 var tableData = data;
 
-var buttonDate = d3.select("#filter-btn-date");
+var buttonDate = d3.select("#filter-btn");
 
 var tbody = d3.select("tbody");
 
@@ -11,6 +11,8 @@ var City = d3.select("#city");
 var State = d3.select("#state");
 var Country = d3.select("#country");
 var Shape = d3.select("#shape");
+
+var errMsg = d3.select("#error-message")
 
 
 // var columns = ["datetime", "city", "state", "country", "shape"]
@@ -23,9 +25,15 @@ function runEnter () {
 
     var inputValueCity = City.property("value").toLowerCase();
 
+    var inputValueState = State.property("value").toLowerCase();
+
+    var inputValueCountry = Country.property("value").toLowerCase();
+
+    var inputValueShape = Shape.property("value").toLowerCase();
+
     // var filteredDataDate = tableData.filter(tableData => tableData.datetime === inputValueDate);
 
-    var combinedFilter = tableData.filter(tableData => tableData.datetime === inputValueDate && tableData.city === inputValueCity);
+    var combinedFilter = tableData.filter(tableData => tableData.datetime === inputValueDate && tableData.city === inputValueCity && tableData.state === inputValueState && tableData.country === inputValueCountry && tableData.shape === inputValueShape);
 
     tbody.html("");
 
@@ -42,7 +50,7 @@ function runEnter () {
     else {
       
 
-      tbody.append("tr").append("td").text("These are not the droids you are looking for, move along")
+      errMsg.append("p").text("These are not the droids you are looking for, move along");
     }
 
 
