@@ -1,12 +1,12 @@
 var tableData = data;
 
-var buttonDate = d3.select("#filter-btn");
+var button = d3.select("#filter-btn");
 
 var tbody = d3.select("tbody");
 
-buttonDate.on("click", runEnter);
+button.on("click", runEnter);
 
-// buttonDate.getElementById("#filter-btn").addEventListener("change", runEnter);
+// button.getElementById("#filter-btn").addEventListener("change", runEnter);
 
 var DateData = d3.select("#datetime");
 var City = d3.select("#city");
@@ -17,8 +17,6 @@ var Shape = d3.select("#shape");
 var errMsg = d3.select("#error-message")
 
 
-// var columns = ["datetime", "city", "state", "country", "shape"]
-
 function populateData(userEntry) {
   userEntry.forEach((sightings) => {
     var row = tbody.append("tr");
@@ -27,7 +25,6 @@ function populateData(userEntry) {
       cell.text(value);
     });
   })
-
 }
 
 
@@ -56,132 +53,54 @@ function runEnter () {
 
     var filteredDataShape = tableData.filter(tableData => tableData.shape === inputValueShape);
 
-    // var combinedFilter = tableData.filter(tableData => tableData.datetime === inputValueDate && tableData.city === inputValueCity && tableData.state === inputValueState && tableData.country === inputValueCountry && tableData.shape === inputValueShape);
-
     tbody.html("");
 
-    if (filteredDataDate.length !== 0) {
+    // d3.select("p").remove();
+
+    if (filteredDataDate !== 0) {
       populateData(filteredDataDate);
-
-      // filteredDataDate.forEach((sightings) => {
-      //   var row = tbody.append("tr");
-      //   Object.entries(sightings).forEach(([key, value]) => {
-      //     var cell = row.append("td");
-      //     cell.text(value);
-      //   });
-      // })
     }
-      else {
-            tbody.html("");
-    
-            errMsg.append("p").text("These are not the droids you are looking for, move along");
+      else if (filteredDataDate.length === 0) {
+        d3.select("tbody").selectAll("tr").remove();
+        errMsg.append("p").text("These are not the droids you are looking for, move along");
         };
-    
-      if (filteredDataCity) {
 
-        populateData(filteredDataCity);
 
-        // filteredDataCity.forEach((sightings) => {
-        //   var row = tbody.append("tr");
-        //   Object.entries(sightings).forEach(([key, value]) => {
-        //     var cell = row.append("td");
-        //     cell.text(value);
-        //   });
-        // })
+    if (filteredDataCity !== 0) {
+      populateData(filteredDataCity);
       }
-
       else {
-        tbody.html("");
-
+        d3.select("tbody").selectAll("tr").remove();
         errMsg.append("p").text("These are not the droids you are looking for, move along");
     };
 
-      if (filteredDataState) {
 
-        populateData(filteredDataState);
-
-        // filteredDataState.forEach((sightings) => {
-        //   var row = tbody.append("tr");
-        //   Object.entries(sightings).forEach(([key, value]) => {
-        //     var cell = row.append("td");
-        //     cell.text(value);
-        //   });
-        // })
+    if (filteredDataState !== 0) {
+      populateData(filteredDataState);
       }
-
       else {
-        tbody.html("");
-
+        d3.select("tbody").selectAll("tr").remove();
         errMsg.append("p").text("These are not the droids you are looking for, move along");
     };
 
-      if (filteredDataCountry) {
 
-        populateData(filteredDataCountry);
-
-        // filteredDataCountry.forEach((sightings) => {
-        //   var row = tbody.append("tr");
-        //   Object.entries(sightings).forEach(([key, value]) => {
-        //     var cell = row.append("td");
-        //     cell.text(value);
-        //   });
-        // })
+    if (filteredDataCountry !== 0) {
+      populateData(filteredDataCountry);
       }
-
       else {
-        tbody.html("");
-
+        d3.select("tbody").selectAll("tr").remove();
         errMsg.append("p").text("These are not the droids you are looking for, move along");
     };
 
-      if (filteredDataShape) {
 
-        populateData(filteredDataCountry);
-
-        // filteredDataShape.forEach((sightings) => {
-        //   var row = tbody.append("tr");
-        //   Object.entries(sightings).forEach(([key, value]) => {
-        //     var cell = row.append("td");
-        //     cell.text(value);
-        //   });
-        // })
+    if (filteredDataShape !== 0) {
+      populateData(filteredDataShape);
       }
-
       else {
-        tbody.html("");
-
+        d3.select("tbody").selectAll("tr").remove();
         errMsg.append("p").text("These are not the droids you are looking for, move along");
     };
-    //   else {
-    //     tbody.html("");
-
-    //     errMsg.append("p").text("These are not the droids you are looking for, move along");
-    // };
-  // }
-
-
-
-        // if (combinedFilter.length !== 0) {
-    //   combinedFilter.forEach((sightings) => {
-    //     var row = tbody.append("tr");
-    //     Object.entries(sightings).forEach(([key, value]) => {
-    //       var cell = row.append("td");
-    //       cell.text(value);
-    //     });
-    //   });
-    // }
-
-
-
-    
-    // filteredDataDate.forEach((sightings) => {
-    //     var row = tbody.append("tr");
-    //     Object.entries(sightings).forEach(([key, value]) => {
-    //       var cell = row.append("td");
-    //       cell.text(value);
-    //     });
-    //   });
-};
+}
 
 
 
