@@ -30,7 +30,8 @@ function populateData(userEntry) {
 
 function runEnter () {
 
-    d3.event.preventDefault();
+    // d3.event.preventDefault();
+    var filteredData = tableData;
 
     var inputValueDate = DateData.property("value");
 
@@ -42,65 +43,72 @@ function runEnter () {
 
     var inputValueShape = Shape.property("value").toLowerCase();
 
-
-    var filteredDataDate = tableData.filter(tableData => tableData.datetime === inputValueDate);
-
-    var filteredDataCity = tableData.filter(tableData => tableData.city === inputValueCity);
-
-    var filteredDataState = tableData.filter(tableData => tableData.state === inputValueState);
-
-    var filteredDataCountry = tableData.filter(tableData => tableData.country === inputValueCountry);
-
-    var filteredDataShape = tableData.filter(tableData => tableData.shape === inputValueShape);
+if (inputValueCity) {
+  filteredData = filteredData.filter(tableData => tableData.city === inputValueCity);
+};
+if (inputValueCountry) {
+  filteredData = filteredData.filter(tableData => tableData.country === inputValueCountry);
+};
+if (inputValueDate) {
+  filteredData = filteredData.filter(tableData => tableData.datetime === inputValueDate);
+};
+if (inputValueState) {
+  filteredData = filteredData.filter(tableData => tableData.state === inputValueState);
+};
+if (inputValueShape) {
+  filteredData = filteredData.filter(tableData => tableData.shape === inputValueShape);
+};
 
     tbody.html("");
 
     // d3.select("p").remove();
 
-    if (filteredDataDate !== 0) {
-      populateData(filteredDataDate);
+    if (filteredData !== 0) {
+      populateData(filteredData);
     }
-      else if (filteredDataDate.length === 0) {
-        d3.select("tbody").selectAll("tr").remove();
-        errMsg.append("p").text("These are not the droids you are looking for, move along");
-        };
+  }
+      // else if (filteredData.length === 0) {
+      //   d3.select("tbody").selectAll("tr").remove();
+      //   errMsg.append("p").text("These are not the droids you are looking for, move along");
+      //   };
 
 
-    if (filteredDataCity !== 0) {
-      populateData(filteredDataCity);
-      }
-      else {
-        d3.select("tbody").selectAll("tr").remove();
-        errMsg.append("p").text("These are not the droids you are looking for, move along");
-    };
+//     if (filteredDataCity !== 0) {
+//       populateData(filteredDataCity);
+//       }
+//     //   else if (filteredDataCity.length === 0) {
+//     //     d3.select("tbody").selectAll("tr").remove();
+//     //     errMsg.append("p").text("These are not the droids you are looking for, move along");
+//     // };
 
 
-    if (filteredDataState !== 0) {
-      populateData(filteredDataState);
-      }
-      else {
-        d3.select("tbody").selectAll("tr").remove();
-        errMsg.append("p").text("These are not the droids you are looking for, move along");
-    };
+//     if (filteredDataState !== 0) {
+//       populateData(filteredDataState);
+//       }
+//     //   else if (filteredDataState.length === 0) {
+//     //     d3.select("tbody").selectAll("tr").remove();
+//     //     errMsg.append("p").text("These are not the droids you are looking for, move along");
+//     // };
 
 
-    if (filteredDataCountry !== 0) {
-      populateData(filteredDataCountry);
-      }
-      else {
-        d3.select("tbody").selectAll("tr").remove();
-        errMsg.append("p").text("These are not the droids you are looking for, move along");
-    };
+//     if (filteredDataCountry !== 0) {
+//       populateData(filteredDataCountry);
+//       }
+//     //   else if (filteredDataCountry.length === 0){
+//     //     d3.select("tbody").selectAll("tr").remove();
+//     //     errMsg.append("p").text("These are not the droids you are looking for, move along");
+//     // };
 
 
-    if (filteredDataShape !== 0) {
-      populateData(filteredDataShape);
-      }
-      else {
-        d3.select("tbody").selectAll("tr").remove();
-        errMsg.append("p").text("These are not the droids you are looking for, move along");
-    };
-}
+//     if (filteredDataShape !== 0) {
+//       populateData(filteredDataShape);
+//       }
+
+//     else {
+//       d3.select("tbody").selectAll("tr").remove();
+//       errMsg.append("p").text("These are not the droids you are looking for, move along");
+//     };
+// }
 
 
 
