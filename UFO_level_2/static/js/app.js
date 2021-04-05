@@ -6,7 +6,7 @@ var tbody = d3.select("tbody");
 
 buttonDate.on("click", runEnter);
 
-var Date = d3.select("#datetime");
+var DateData = d3.select("#datetime");
 var City = d3.select("#city");
 var State = d3.select("#state");
 var Country = d3.select("#country");
@@ -21,7 +21,7 @@ function runEnter () {
 
     d3.event.preventDefault();
 
-    var inputValueDate = Date.property("value");
+    var inputValueDate = DateData.property("value");
 
     var inputValueCity = City.property("value").toLowerCase();
 
@@ -31,14 +31,14 @@ function runEnter () {
 
     var inputValueShape = Shape.property("value").toLowerCase();
 
-    // var filteredDataDate = tableData.filter(tableData => tableData.datetime === inputValueDate);
+    var filteredDataDate = tableData.filter(tableData => tableData.datetime === inputValueDate);
 
-    var combinedFilter = tableData.filter(tableData => tableData.datetime === inputValueDate && tableData.city === inputValueCity && tableData.state === inputValueState && tableData.country === inputValueCountry && tableData.shape === inputValueShape);
+    // var combinedFilter = tableData.filter(tableData => tableData.datetime === inputValueDate && tableData.city === inputValueCity && tableData.state === inputValueState && tableData.country === inputValueCountry && tableData.shape === inputValueShape);
 
     tbody.html("");
 
-    if (combinedFilter.length !== 0) {
-      combinedFilter.forEach((sightings) => {
+    if (filteredDataDate) {
+      filteredDataDate.forEach((sightings) => {
         var row = tbody.append("tr");
         Object.entries(sightings).forEach(([key, value]) => {
           var cell = row.append("td");
@@ -47,8 +47,19 @@ function runEnter () {
       });
     }
 
+
+    // if (combinedFilter.length !== 0) {
+    //   combinedFilter.forEach((sightings) => {
+    //     var row = tbody.append("tr");
+    //     Object.entries(sightings).forEach(([key, value]) => {
+    //       var cell = row.append("td");
+    //       cell.text(value);
+    //     });
+    //   });
+    // }
+
     else {
-      
+      tbody.html("");
 
       errMsg.append("p").text("These are not the droids you are looking for, move along");
     }
@@ -80,7 +91,7 @@ function runEnter () {
 // buttonCity.on("click", runEnterCity);
 
 
-// function runEnterCity () {
+// function runEnterCity () { 
 
 //     d3.event.preventDefault();
 
