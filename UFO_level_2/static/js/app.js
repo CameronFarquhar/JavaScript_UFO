@@ -36,6 +36,11 @@ function runEnter () {
 
     var filteredDataCity = tableData.filter(tableData => tableData.city === inputValueCity);
 
+    var filteredDataState = tableData.filter(tableData => tableData.state === inputValueState);
+
+    var filteredDataCountry = tableData.filter(tableData => tableData.country === inputValueCountry);
+
+    var filteredDataShape = tableData.filter(tableData => tableData.shape === inputValueShape);
 
     // var combinedFilter = tableData.filter(tableData => tableData.datetime === inputValueDate && tableData.city === inputValueCity && tableData.state === inputValueState && tableData.country === inputValueCountry && tableData.shape === inputValueShape);
 
@@ -50,8 +55,39 @@ function runEnter () {
         });
       })
     
+    
       if (filteredDataCity) {
         filteredDataCity.forEach((sightings) => {
+          var row = tbody.append("tr");
+          Object.entries(sightings).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+          });
+        })
+      }
+
+      if (filteredDataState) {
+        filteredDataState.forEach((sightings) => {
+          var row = tbody.append("tr");
+          Object.entries(sightings).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+          });
+        })
+      }
+
+      if (filteredDataCountry) {
+        filteredDataCountry.forEach((sightings) => {
+          var row = tbody.append("tr");
+          Object.entries(sightings).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+          });
+        })
+      }
+
+      if (filteredDataShape) {
+        filteredDataShape.forEach((sightings) => {
           var row = tbody.append("tr");
           Object.entries(sightings).forEach(([key, value]) => {
             var cell = row.append("td");
