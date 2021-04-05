@@ -31,7 +31,11 @@ function runEnter () {
 
     var inputValueShape = Shape.property("value").toLowerCase();
 
+
     var filteredDataDate = tableData.filter(tableData => tableData.datetime === inputValueDate);
+
+    var filteredDataCity = tableData.filter(tableData => tableData.city === inputValueCity);
+
 
     // var combinedFilter = tableData.filter(tableData => tableData.datetime === inputValueDate && tableData.city === inputValueCity && tableData.state === inputValueState && tableData.country === inputValueCountry && tableData.shape === inputValueShape);
 
@@ -44,11 +48,28 @@ function runEnter () {
           var cell = row.append("td");
           cell.text(value);
         });
-      });
-    }
+      })
+    
+      if (filteredDataCity) {
+        filteredDataCity.forEach((sightings) => {
+          var row = tbody.append("tr");
+          Object.entries(sightings).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+          });
+        })
+      }
+
+    //   else {
+    //     tbody.html("");
+
+    //     errMsg.append("p").text("These are not the droids you are looking for, move along");
+    // };
+  }
 
 
-    // if (combinedFilter.length !== 0) {
+
+        // if (combinedFilter.length !== 0) {
     //   combinedFilter.forEach((sightings) => {
     //     var row = tbody.append("tr");
     //     Object.entries(sightings).forEach(([key, value]) => {
@@ -58,11 +79,6 @@ function runEnter () {
     //   });
     // }
 
-    else {
-      tbody.html("");
-
-      errMsg.append("p").text("These are not the droids you are looking for, move along");
-    }
 
 
     
